@@ -1,21 +1,21 @@
-import AddToCart from "../assets/icons/add_cart.svg";
-const ListItem = () => {
+import AddToCart from "../../assets/icons/add_cart.svg";
+const ListItem = ({ data }) => {
   return (
     <div className="item-card">
       <img
         className="img-fluid"
-        src="/assets/placeholder.png"
-        alt="Some Title"
+        src={`/assets/${data.thumbbnail}`}
+        alt={data.title}
       />
       <div className="item-card__information">
         <div className="pricing">
-          <span>Rs 340</span>
+          <span>{data.discountPrice}</span>
           <small>
-            <strike>450</strike>
+            <strike>{data.price}</strike>
           </small>
         </div>
         <div className="title">
-          <h3>Title of the Item</h3>
+          <h3>{data.title}</h3>
         </div>
       </div>
       <button className="cart-add">
