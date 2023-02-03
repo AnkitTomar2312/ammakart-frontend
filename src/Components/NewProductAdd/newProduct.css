@@ -1,0 +1,26 @@
+.new-product-add-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 7em;
+}
+.product-data {
+  width: 39%;
+  height: 30vw;
+}
+.new-product {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-product label {
+  font-size: 2em;
+}
+
+.new-product input {
+  padding: 15px;
+  border-radius: 15px;
+  margin: 1rem 0;
+  border: 0;
+  border-bottom: 1px solid blueviolet;
+}
