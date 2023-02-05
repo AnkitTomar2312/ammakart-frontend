@@ -3,17 +3,17 @@ const Products = () => {
   const item = [
     {
       id: 1,
-      discountPrice: 340,
+      discount: 340,
       price: 450,
       title: "Title of the Item",
-      thumbbnail: "placeholder.png",
+      thumbnail: "placeholder.png",
     },
     {
       id: 2,
-      discountPrice: 340,
+      discount: 340,
       price: 450,
       title: "Title of the Item",
-      thumbbnail: "placeholder.png",
+      thumbnail: "placeholder.png",
     },
   ];
   return (

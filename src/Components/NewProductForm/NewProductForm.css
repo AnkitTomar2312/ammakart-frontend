@@ -1,0 +1,35 @@
+.NewProductForm-Wrapper {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 5em;
+}
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-wrapper form {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 70vh;
+  width: 35vw;
+}
+
+.form-wrapper form input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  border-bottom: 1px solid rgb(233, 97, 37);
+}
+
+.form-wrapper form button {
+  width: 10vw;
+  margin: 7px 0 0 auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  background-color: rgb(233, 97, 37);
+  color: white;
+  font-weight: 500;
+}
