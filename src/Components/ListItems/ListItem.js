@@ -1,10 +1,19 @@
 import { useState } from "react";
 import AddToCart from "../../assets/icons/add_cart.svg";
 const ListItem = ({ data }) => {
-  const [message, setMessage] = useState("Not added to the cart !!");
-  const handelCartMessage = () => {
+  const [counter, setCounter] = useState(0);
+  const increaseCounter = () => {
     setMessage("Added to the cart !!");
+    setCounter(counter + 1);
   };
+  const decreaseCounter = () => {
+    if (counter === 0) {
+      return;
+    }
+    setCounter(counter - 1);
+  };
+  const [message, setMessage] = useState("Not added to the cart !!");
+
   return (
     <div className="item-card">
       <img
@@ -24,10 +33,22 @@ const ListItem = ({ data }) => {
         </div>
       </div>
       <small className="cart-message">{message}</small>
-      <button className="cart-add" onClick={handelCartMessage}>
-        <span>Add to cart</span>
-        <img src={AddToCart} alt="cart-img" />
-      </button>
+      {counter < 1 ? (
+        <button className="cart-add" onClick={increaseCounter}>
+          <span>Add to cart</span>
+          <img src={AddToCart} alt="cart-img" />
+        </button>
+      ) : (
+        <div className="cart-addon">
+          <button onClick={decreaseCounter}>
+            <span>-</span>
+          </button>
+          <span>{counter}</span>
+          <button onClick={increaseCounter}>
+            <span>+</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

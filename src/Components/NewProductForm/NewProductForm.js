@@ -12,7 +12,7 @@ const NewProductForm = () => {
 
   const handelSubmit = (event) => {
     event.preventDefault();
-    if (item.discount < item.price) {
+    if (item.discount > item.price) {
       alert("Can't give Discount greater than Price");
     }
   };
@@ -48,12 +48,12 @@ const NewProductForm = () => {
             value={item.price}
           ></input>
 
-          <label htmlFor="discount">Discount</label>
+          <label htmlFor="discount">Discount Price</label>
           <input
             name="discount"
             type={"number"}
             id="discount"
-            placeholder="Enter Discount..."
+            placeholder="Enter Discount Price..."
             onChange={handelInput}
             value={item.discount}
           ></input>
@@ -68,7 +68,7 @@ const NewProductForm = () => {
             value={item.thumbnail}
           ></input>
 
-          <button>Update</button>
+          <button onClick={handelInput}>Update</button>
         </form>
       </div>
 
