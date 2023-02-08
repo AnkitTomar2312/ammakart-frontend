@@ -7,10 +7,10 @@ import Login from "./Components/LogIn/Login";
 function App() {
   return (
     <div className="App">
-      {/* <Header />
+      <Header />
       <SubHeader />
       <Products />
-      <NewProductForm /> */}
+      <NewProductForm />
       <Login />
     </div>
   );
