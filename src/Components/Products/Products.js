@@ -4,6 +4,7 @@ import axios from "axios";
 import Loader from "../UI/Loader";
 const Products = () => {
   const [items, setItems] = useState([]);
+  const [loader, setLoader] = useState(true);
   //calling data from the fireBase
   useEffect(() => {
     //creating a async function:
@@ -19,10 +20,14 @@ const Products = () => {
             id: index,
           };
         });
+        //setLoader(false);
         setItems(transformData);
       } catch (error) {
+        //setLoader(false);
         console.log("Errro: ", error);
         alert("Some error occured");
+      } finally {
+        setLoader(false);
       }
     }
     fetchItem();
@@ -63,14 +68,12 @@ const Products = () => {
     <>
       <div className="product-list">
         <div className="product-list--wrapper">
-          {/* <ListItem data={items[0]} />
-        <ListItem data={items[1]} /> */}
           {items.map((item) => {
             return <ListItem data={item} key={item.id} />;
           })}
         </div>
       </div>
-      {/* <Loader /> */}
+      {loader && <Loader />}
     </>
   );
 };

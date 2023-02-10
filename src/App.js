@@ -10,8 +10,8 @@ function App() {
       <Header />
       <SubHeader />
       <Products />
-      <NewProductForm />
-      <Login />
+      {/* <NewProductForm />
+      <Login /> */}
     </div>
   );
 }
