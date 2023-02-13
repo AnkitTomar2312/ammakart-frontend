@@ -8,9 +8,13 @@ export default function Modal({ onClose, children }) {
         {ReactDOM.createPortal(
           <Fragment>
             <Backdrop onClose={onClose} />
+
             <div className="modal">
+              <button type="close" onClick={onClose}>
+                X
+              </button>
+
               <div className="content">{children}</div>
-              <button onClick={onClose}>X</button>
             </div>
           </Fragment>,
           document.getElementById("modal-root")
