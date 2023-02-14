@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function header() {
+export default function header({ count }) {
   return (
     <div>
       <header>
         <div className="nav-brand">
-          <a to="/">
+          <a to="/ ">
             <span>AmaKart</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export default function header() {
         </div>
         <div className="cart-container">
           <button>
-            <span data-items={0}>Cart</span>
+            <span data-items={count}>Cart</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-shopping-cart-plus"
