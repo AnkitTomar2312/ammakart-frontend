@@ -1,11 +1,13 @@
 import { Fragment, useState } from "react";
 import AddToCart from "../../assets/icons/add_cart.svg";
 import Modal from "../UI/Modal";
-const ListItem = ({ data }) => {
+
+const ListItem = ({ data, onAdd, onRemove }) => {
   const [counter, setCounter] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const increaseCounter = (event) => {
     event.stopPropagation(); //stoping modal from bubble up when clicked on card
+    onAdd(data.id);
     setMessage("Added to the cart !!");
     setCounter(counter + 1);
   };
@@ -13,6 +15,9 @@ const ListItem = ({ data }) => {
     event.stopPropagation();
     if (counter === 0) {
       return;
+    }
+    if (counter === 1) {
+      onRemove(data.id);
     }
     setCounter(counter - 1);
   };
@@ -23,6 +28,8 @@ const ListItem = ({ data }) => {
 
   return (
     <Fragment>
+      {/* card data from backend to frontend rendering */}
+
       <div onClick={handelModal} className="item-card">
         <img
           className="img-fluid"
@@ -58,6 +65,9 @@ const ListItem = ({ data }) => {
           </div>
         )}
       </div>
+
+      {/* show modal condition check */}
+
       {showModal && (
         <Modal onClose={handelModal}>
           <div className="item-card__modal">

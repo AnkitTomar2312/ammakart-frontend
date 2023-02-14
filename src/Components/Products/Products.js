@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import ListItem from "../ListItems/ListItem";
 import axios from "axios";
 import Loader from "../UI/Loader";
-const Products = () => {
+const Products = ({ onAddItem, onRemoveItem }) => {
   const [items, setItems] = useState([]);
   const [loader, setLoader] = useState(true);
+  const [presentItem, setPresentItem] = useState([]);
+
   //calling data from the fireBase
   useEffect(() => {
     //creating a async function:
@@ -64,12 +66,38 @@ const Products = () => {
     //   });
   }, []);
 
+  const handelAddItem = (id) => {
+    let index = presentItem.indexOf(id);
+    if (index > -1) {
+      return;
+    }
+    setPresentItem([...presentItem, id]);
+    onAddItem();
+  };
+
+  const hnadelRemoveItem = (id) => {
+    let index = presentItem.indexOf(id);
+    if (index > -1) {
+      let item = [...presentItem];
+      item.splice(index, 1);
+      setPresentItem([...item]);
+      onRemoveItem();
+    }
+  };
+
   return (
     <>
       <div className="product-list">
         <div className="product-list--wrapper">
           {items.map((item) => {
-            return <ListItem data={item} key={item.id} />;
+            return (
+              <ListItem
+                onAdd={handelAddItem}
+                onRemove={hnadelRemoveItem}
+                data={item}
+                key={item.id}
+              />
+            );
           })}
         </div>
       </div>
