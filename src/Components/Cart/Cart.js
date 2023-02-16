@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from "react";
 import Modal from "../UI/Modal";
+import CartItem from "./CartItem";
 
-export default function Cart({ count }) {
+export default function Cart({ count, items }) {
   const [showModal, setShowModal] = useState(false);
   const handelModal = () => {
     setShowModal((previousState) => !previousState);
@@ -36,31 +37,9 @@ export default function Cart({ count }) {
             <h2>Checkout Modal</h2>
             <div className="checkout-modal_list">
               {count > 0 ? (
-                <div className="checkout-modal_list-item">
-                  <div className="img-wrap">
-                    <img
-                      src={"assets//placeholder.png"}
-                      className="img-fluid"
-                      alt="Placeholder"
-                    ></img>
-                  </div>
-                  <div className="information">
-                    <div>
-                      <h4>Title of Product</h4>
-                      <div className="pricing">
-                        <span>2000</span>
-                        <small>
-                          <strike>2500</strike>
-                        </small>
-                      </div>
-                    </div>
-                    <div className="cart-addon cart-addon__modal">
-                      <button>-</button>
-                      <span className="counter">{0}</span>
-                      <button>+</button>
-                    </div>
-                  </div>
-                </div>
+                items.map((item) => {
+                  return <CartItem data={item} kry={item.id} />;
+                })
               ) : (
                 <div className="empty-cart">
                   Please add something in your cart!!
@@ -72,7 +51,14 @@ export default function Cart({ count }) {
                 <>
                   <div className="totalAmount">
                     <h4>Total Amount:</h4>
-                    <h4>20000 INR</h4>
+                    <h4>
+                      {items.reduce((previous, current) => {
+                        return (
+                          previous + current.discountedPrice * current.quantity
+                        );
+                      }, 0)}
+                      <span style={{ marginLeft: "4px" }}>INR</span>
+                    </h4>
                   </div>
                   <button>Order Now</button>
                 </>

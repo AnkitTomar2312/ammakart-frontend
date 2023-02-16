@@ -6,17 +6,33 @@ import NewProductForm from "./Components/NewProductForm/NewProductForm";
 import Login from "./Components/LogIn/Login";
 import { useState } from "react";
 function App() {
-  const [cartItem, setCartItem] = useState(0);
+  const [cartItem, setCartItem] = useState([]);
 
-  const handelAddItem = () => {
-    setCartItem(cartItem + 1);
+  const handelAddItem = (item) => {
+    let items = [...cartItem];
+    let index = items.findIndex((i) => i.id === item.id);
+    if (index > -1) {
+      items[index] = item;
+    } else {
+      items.push(item);
+    }
+    setCartItem([...items]);
+    // setCartItem(cartItem + 1);
   };
-  const handelRemoveItem = () => {
-    setCartItem(cartItem - 1);
+  const handelRemoveItem = (item) => {
+    let items = [...cartItem];
+    let index = items.findIndex((i) => i.id === item.id);
+    if (items[index].quantity === 0) {
+      items.splice(index, 1);
+    } else {
+      items[index] = item;
+    }
+    setCartItem([...items]);
+    //setCartItem(cartItem - 1);
   };
   return (
     <div className="App">
-      <Header count={cartItem} />
+      <Header count={cartItem.length} items={cartItem} />
       <SubHeader />
       <Products onAddItem={handelAddItem} onRemoveItem={handelRemoveItem} />
       {/* <NewProductForm />``

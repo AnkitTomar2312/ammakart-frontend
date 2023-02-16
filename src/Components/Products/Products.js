@@ -19,6 +19,7 @@ const Products = ({ onAddItem, onRemoveItem }) => {
         const transformData = data.map((item, index) => {
           return {
             ...item,
+            quantity: 0,
             id: index,
           };
         });
@@ -67,22 +68,35 @@ const Products = ({ onAddItem, onRemoveItem }) => {
   }, []);
 
   const handelAddItem = (id) => {
-    let index = presentItem.indexOf(id);
-    if (index > -1) {
-      return;
-    }
-    setPresentItem([...presentItem, id]);
-    onAddItem();
+    let data = [...items];
+    let index = data.findIndex((i) => i.id === id);
+    data[index].quantity += 1;
+    setItems([...data]);
+    onAddItem(data[index]);
+
+    // let index = presentItem.indexOf(id);
+    // if (index > -1) {
+    //   return;
+    // }
+    // setPresentItem([...presentItem, id]);
+    // onAddItem();
   };
 
   const hnadelRemoveItem = (id) => {
-    let index = presentItem.indexOf(id);
-    if (index > -1) {
-      let item = [...presentItem];
-      item.splice(index, 1);
-      setPresentItem([...item]);
-      onRemoveItem();
+    let data = [...items];
+    let index = data.findIndex((i) => i.id === id);
+    if (data[index.quantity] !== 0) {
+      data[index].quantity -= 1;
+      setItems([...data]);
+      onRemoveItem(data[index]);
     }
+    // let index = presentItem.indexOf(id);
+    // if (index > -1) {
+    //   let item = [...presentItem];
+    //   item.splice(index, 1);
+    //   setPresentItem([...item]);
+    //   onRemoveItem();
+    // }
   };
 
   return (
