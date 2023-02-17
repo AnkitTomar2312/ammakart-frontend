@@ -1,7 +1,7 @@
 import React from "react";
 import Cart from "../Cart/Cart";
 
-export default function header({ count, items }) {
+export default function header({ count, items, onhandelEvent }) {
   return (
     <div>
       <header>
@@ -73,7 +73,7 @@ export default function header({ count, items }) {
           </svg>
         </div>
         <div className="cart-container">
-          <Cart count={count} items={items} />
+          <Cart count={count} items={items} onhandelEvent={onhandelEvent} />
         </div>
       </header>
     </div>

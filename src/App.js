@@ -7,7 +7,10 @@ import Login from "./Components/LogIn/Login";
 import { useState } from "react";
 function App() {
   const [cartItem, setCartItem] = useState([]);
-
+  const [eventQueue, setEventQueue] = useState({
+    id: "",
+    type: "",
+  });
   const handelAddItem = (item) => {
     let items = [...cartItem];
     let index = items.findIndex((i) => i.id === item.id);
@@ -30,11 +33,29 @@ function App() {
     setCartItem([...items]);
     //setCartItem(cartItem - 1);
   };
+  //type ===-1, decrese
+  //type ===1 , increase
+  const handelEventQueue = (id, type) => {
+    console.log({ id, type });
+    setEventQueue({
+      id,
+      type,
+    });
+  };
+
   return (
     <div className="App">
-      <Header count={cartItem.length} items={cartItem} />
+      <Header
+        count={cartItem.length}
+        items={cartItem}
+        onhandelEvent={handelEventQueue}
+      />
       <SubHeader />
-      <Products onAddItem={handelAddItem} onRemoveItem={handelRemoveItem} />
+      <Products
+        onAddItem={handelAddItem}
+        onRemoveItem={handelRemoveItem}
+        eventState={eventQueue}
+      />
       {/* <NewProductForm />``
       <Login /> */}
     </div>

@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import Modal from "../UI/Modal";
 import CartItem from "./CartItem";
 
-export default function Cart({ count, items }) {
+export default function Cart({ count, items, onhandelEvent }) {
   const [showModal, setShowModal] = useState(false);
   const handelModal = () => {
     setShowModal((previousState) => !previousState);
@@ -38,7 +38,14 @@ export default function Cart({ count, items }) {
             <div className="checkout-modal_list">
               {count > 0 ? (
                 items.map((item) => {
-                  return <CartItem data={item} kry={item.id} />;
+                  return (
+                    <CartItem
+                      data={item}
+                      onEmitDecreaseItem={(id) => onhandelEvent(id, -1)}
+                      onEmitIncreaseItem={(id) => onhandelEvent(id, 1)}
+                      key={item.id}
+                    />
+                  );
                 })
               ) : (
                 <div className="empty-cart">

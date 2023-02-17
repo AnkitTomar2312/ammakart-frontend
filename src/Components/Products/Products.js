@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import ListItem from "../ListItems/ListItem";
 import axios from "axios";
 import Loader from "../UI/Loader";
-const Products = ({ onAddItem, onRemoveItem }) => {
+
+//
+const Products = ({ onAddItem, onRemoveItem, eventState }) => {
   const [items, setItems] = useState([]);
   const [loader, setLoader] = useState(true);
-  const [presentItem, setPresentItem] = useState([]);
 
   //calling data from the fireBase
   useEffect(() => {
@@ -67,6 +68,16 @@ const Products = ({ onAddItem, onRemoveItem }) => {
     //   });
   }, []);
 
+  useEffect(() => {
+    if (eventState.id > -1) {
+      if (eventState.type === -1) {
+        handelRemoveItem(eventState.id);
+      } else if (eventState.type === 1) {
+        handelAddItem(eventState.id);
+      }
+    }
+  }, [eventState]);
+
   const handelAddItem = (id) => {
     let data = [...items];
     let index = data.findIndex((i) => i.id === id);
@@ -82,7 +93,7 @@ const Products = ({ onAddItem, onRemoveItem }) => {
     // onAddItem();
   };
 
-  const hnadelRemoveItem = (id) => {
+  const handelRemoveItem = (id) => {
     let data = [...items];
     let index = data.findIndex((i) => i.id === id);
     if (data[index.quantity] !== 0) {
@@ -107,7 +118,7 @@ const Products = ({ onAddItem, onRemoveItem }) => {
             return (
               <ListItem
                 onAdd={handelAddItem}
-                onRemove={hnadelRemoveItem}
+                onRemove={handelRemoveItem}
                 data={item}
                 key={item.id}
               />
