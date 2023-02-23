@@ -1,13 +1,11 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+//this extension is from the browser perpective
 import { composeWithDevTools } from "redux-devtools-extension";
-
-const rootReducer = (state, action) => {
-  return state;
-};
+import mainReducer from "../reducers";
 
 const store = createStore(
-  rootReducer,
+  mainReducer,
   {
     items: [],
     totalAmount: 0,
