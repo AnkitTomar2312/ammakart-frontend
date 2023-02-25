@@ -8,7 +8,7 @@ const Products = ({ onAddItem, onRemoveItem, eventState }) => {
   const [items, setItems] = useState([]);
   const [loader, setLoader] = useState(true);
 
-  //calling data from the fireBase
+  //calling data from the fireBase using axios
   useEffect(() => {
     //creating a async function:
     async function fetchItem() {
