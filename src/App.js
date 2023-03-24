@@ -2,9 +2,10 @@ import "./App.css";
 import Products from "./Components/Products/Products";
 import Header from "./Components/Layouts/Header";
 import SubHeader from "./Components/Layouts/SubHeader";
-import NewProductForm from "./Components/NewProductForm/NewProductForm";
-import Login from "./Components/LogIn/Login";
+// import NewProductForm from "./Components/NewProductForm/NewProductForm";
+// import Login from "./Components/LogIn/Login";
 import { useState } from "react";
+
 function App() {
   const [cartItem, setCartItem] = useState([]);
   const [eventQueue, setEventQueue] = useState({
